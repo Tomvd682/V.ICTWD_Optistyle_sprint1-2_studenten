@@ -1,0 +1,74 @@
+﻿@model ReviewModel
+@{
+    ViewData["Title"] = "Review";
+}
+
+<div class="container">
+    <section id="review-achterlaten">
+        <h2>Laat een review achter</h2>
+        <p>
+            We horen graag wat u van onze dienstverlening vindt. Vul onderstaand formulier in om een review achter te laten.
+        </p>
+
+        <form asp-action="SubmitReview" method="post" class="review-form" novalidate>
+            @Html.AntiForgeryToken()
+
+            <div asp-validation-summary="ModelOnly"
+                 class="validation-error"
+                 role="alert"
+                 aria-live="assertive">
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FullName" class="form-label"></label>
+                <input asp-for="FullName"
+                       class="form-input"
+                       inputmode="text"
+                       maxlength="100"
+                       placeholder="Annie Hendriks"
+                       aria-describedby="fullNameHelp" />
+                <span id="fullNameHelp" class="sr-only">
+                    Vul uw volledige naam in (letters en spaties, max. 100).
+                </span>
+                <span asp-validation-for="FullName" class="validation-error" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Rating" class="form-label">Beoordeling (1 = slecht, 5 = uitstekend)</label>
+                <select asp-for="Rating"
+                        class="form-input"
+                        aria-describedby="ratingHelp">
+                    <option value="">-- Kies een beoordeling --</option>
+                    <option value="1">1 - Slecht</option>
+                    <option value="2">2</option>
+                    <option value="3">3 - Gemiddeld</option>
+                    <option value="4">4</option>
+                    <option value="5">5 - Uitstekend</option>
+                </select>
+                <span id="ratingHelp" class="sr-only">
+                    Kies een cijfer van 1 tot en met 5.
+                </span>
+                <span asp-validation-for="Rating" class="validation-error" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Comment" class="form-label"></label>
+                <textarea asp-for="Comment"
+                          class="form-input"
+                          rows="5"
+                          maxlength="1000"
+                          placeholder="Beschrijf uw ervaring..."
+                          aria-describedby="commentHelp"></textarea>
+                <span id="commentHelp" class="sr-only">
+                    Geef eventueel een toelichting bij uw beoordeling (max. 1000 tekens).
+                </span>
+                <span asp-validation-for="Comment" class="validation-error" />
+            </div>
+
+            <button type="submit" class="submit-button">Verstuur review</button>
+        </form>
+
+        @section Scripts {
+            <partial name="_ValidationScriptsPartial" />
+        }
+    </section>
+</div>

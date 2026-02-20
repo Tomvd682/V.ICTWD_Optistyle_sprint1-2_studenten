@@ -57,6 +57,22 @@
                 <span asp-validation-for="Phone" class="validation-error" />
             </div>
 
+            @* Nieuwe *@
+            <div class="form-group">
+                <label asp-for="Bericht" class="form-label"></label>
+                <input asp-for="Bericht"
+                       class="form-input"
+                       inputmode="full-width-latin"
+                       maxlength="200"
+                       minlength="1"
+                       placeholder="Je bericht"
+                       aria-describedby="berichtHelp" />
+                <span id="berichtHelp" class="sr-only">
+                    Je bericht mag maximaal 200 character lang zijn.
+                </span>
+                <span asp-validation-for="Phone" class="validation-error" />
+            </div>
+
             <button type="submit" class="submit-button">Verstuur</button>
         </form>
 
